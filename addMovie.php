@@ -44,18 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addMovie'])) {
                     ':photo_path' => $savePath
                 ]);
 
-                echo "映画情報を登録しました。<a href='index.php'>戻る</a>";
+                echo "映画が追加されました。<a href='index.php'>戻る</a>";
 
             } catch (PDOException $e) {
                 echo "データベースエラー: " . $e->getMessage();
             }
         } else {
-            echo "画像のアップロードに失敗しました。";
+            echo "画像のアップロードに失敗しました。<a href='index.php'>戻る</a>";
         }
     } else {
-        echo "画像ファイルが正しく選択されていません。";
+        echo "画像ファイルが正しく選択されていません。<a href='index.php'>戻る</a>";
     }
 } else {
-    echo "映画の登録に失敗しました。";
+    echo "映画の追加に失敗しました。<a href='index.php'>戻る</a>";
 }
 ?>
