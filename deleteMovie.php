@@ -1,6 +1,16 @@
 <?php
 
-$id = $_POST['id'] ?? null;
+$id = $_POST['delete_id'] ?? null;
+
+// DB接続
+$pdo = new PDO(
+    "mysql:host=mysql325.phy.lolipop.lan;dbname=LAA1554917-aso2301180;charset=utf8",
+    "LAA1554917",
+    "Pass0708"
+);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
 
 if ($id !== null) {
     // 画像ファイルのパス取得

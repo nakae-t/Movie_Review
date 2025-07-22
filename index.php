@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>映画詳細画面</title>
 </head>
 <body>
     <h1>映画登録</h1>
@@ -47,17 +47,18 @@
         foreach ($movies as $movie) {
             echo "<div>";
             echo "<h3>タイトル:" . htmlspecialchars($movie['title'], ENT_QUOTES, 'UTF-8') . "</h3>";
-            echo "<p>ID:".$movie['id']."</p>";
-            echo "<p>ジャンル: " . htmlspecialchars($movie['genre'], ENT_QUOTES, 'UTF-8') . "</p>";
-            echo "<p>監督: " . htmlspecialchars($movie['director'], ENT_QUOTES, 'UTF-8') . "</p>";
+            echo "<p><b>ID:</b>".$movie['id']."</p>";
+            echo "<p><b>ジャンル:</b> " . htmlspecialchars($movie['genre'], ENT_QUOTES, 'UTF-8') . "</p>";
+            echo "<p><b>監督:</b> " . htmlspecialchars($movie['director'], ENT_QUOTES, 'UTF-8') . "</p>";
             echo "<img src='" . htmlspecialchars($movie['photo_path'], ENT_QUOTES, 'UTF-8') . "' alt='映画画像' width='200'>";
 
             echo "<form action='./detailMovie.php' method='POST'>";
-            echo "<button type='submit' name='review' value= '".$movie['id']."'>詳細</button>";
+            echo "<input type='hidden' name='review' value= '".$movie['id']."'>";
+             echo "<button type='submit'>編集</button>";
             echo "</form>";
 
             echo "<form action='./deleteMovie.php' method='POST'>";
-            echo "<input type='hidden' name='delete' value= '".$movie['id']."'>";
+            echo "<input type='hidden' name='delete_id' value= '".$movie['id']."'>";
             echo "<button type='submit'>削除</button>";
             echo "</form>";
 
