@@ -1,3 +1,4 @@
+<!-- SD3D 仲江鳳星 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -28,7 +29,7 @@
     <!-- 映画の一覧を表示 -->
     <?php
     try {
-        // ロリポップ用の接続情報に変更
+        // ロリポップ用の接続情報
         $pdo = new PDO(
             "mysql:host=mysql325.phy.lolipop.lan;dbname=LAA1554917-aso2301180;charset=utf8",
             "LAA1554917",
@@ -42,6 +43,7 @@
         
     ?>
 
+    <!-- スタイル変更 -->
     <table border="1" style="text-align: center; width: 1000px;">
         <tr>
             <th>ID</th>
@@ -58,6 +60,7 @@
             <td><?= htmlspecialchars($movie['genre']) ?></td>
             <td><?= htmlspecialchars($movie['director']) ?></td>
             <td>
+                <!-- 画像出力 -->
                 <?php if ($movie['photo_path']): ?>
                     <img src="<?= htmlspecialchars($movie['photo_path']) ?>" width="200">
                 <?php else: ?>
@@ -65,11 +68,12 @@
                 <?php endif; ?>
             </td>
            <td>
+                <!-- 編集ボタン -->
                 <form action="./detailMovie.php" method="POST" style="display:inline;">
                     <input type="hidden" name="review" value="<?= $movie['id'] ?>">
                     <button type="submit">編集</button>
                 </form>
-
+                <!-- 削除ボタン -->
                 <form action="./deleteMovie.php" method="POST" style="display:inline;" onsubmit="return confirm('削除しますか？');">
                     <input type="hidden" name="delete_id" value="<?= $movie['id'] ?>">
                     <button type="submit">削除</button>

@@ -1,3 +1,5 @@
+<!-- SD3D 仲江鳳星 -->
+ 
 <?php
 // POSTデータの受け取り
 $movie_id = $_POST['movie_id'] ?? null;

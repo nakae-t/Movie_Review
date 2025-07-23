@@ -1,7 +1,9 @@
+<!-- SD3D 仲江鳳星 -->
+
 <?php
 
 $id = $_POST['review'] ?? null;
-
+// POST送信がない場合index.phpにリダイレクトする
 if ($id === null) {
     header('Location: index.php');
     exit;
@@ -42,16 +44,18 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- タイトル -->
     <title><?= htmlspecialchars($movie['title'], ENT_QUOTES, 'UTF-8') ?>の詳細</title>
 </head>
 <body>
-
+<!-- タイトル -->
 <h1><?= htmlspecialchars($movie['title'], ENT_QUOTES, 'UTF-8') ?>の詳細</h1>
 <hr>
 
 <p><b>ジャンル：</b><?= htmlspecialchars($movie['genre'], ENT_QUOTES, 'UTF-8') ?></p>
 <p><b>監督：</b><?= htmlspecialchars($movie['director'], ENT_QUOTES, 'UTF-8') ?></p>
 
+<!-- 画像表示処理 -->
 <?php if (!empty($movie['photo_path']) && file_exists($movie['photo_path'])): ?>
     <img src="<?= htmlspecialchars($movie['photo_path'], ENT_QUOTES, 'UTF-8') ?>" alt="映画画像" width="450">
 <?php else: ?>
@@ -64,6 +68,8 @@ try {
 
 <?php if (!empty($reviews)): ?>
     <?php foreach ($reviews as $review): ?>
+
+        <!-- リスト表示させるスタイル -->
         <p  style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
         <b><?=  htmlspecialchars($review['reviewer'], ENT_QUOTES, 'UTF-8')?>：</b> <?= nl2br(htmlspecialchars($review['comment'], ENT_QUOTES, 'UTF-8')) ?></p>
         <hr>

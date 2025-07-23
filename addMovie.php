@@ -1,5 +1,6 @@
+<!-- SD3D 仲江鳳星 -->
 <?php
-// DB接続情報（最初に一度だけ）
+// DB接続情報
 $pdo = new PDO(
     'mysql:host=mysql325.phy.lolipop.lan;dbname=LAA1554917-aso2301180;charset=utf8',
     'LAA1554917',

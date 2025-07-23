@@ -1,3 +1,4 @@
+<!-- SD3D 仲江鳳星 -->
 <?php
 
 $id = $_POST['delete_id'] ?? null;
@@ -19,7 +20,8 @@ if ($id !== null) {
     $movie = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($movie && !empty($movie['photo_path']) && file_exists($movie['photo_path'])) {
-        unlink($movie['photo_path']); // サーバーから画像削除
+        // サーバーから画像削除
+        unlink($movie['photo_path']); 
     }
 
     // 映画データ削除
