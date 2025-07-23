@@ -64,7 +64,8 @@ try {
 
 <?php if (!empty($reviews)): ?>
     <?php foreach ($reviews as $review): ?>
-        <p><b>コメント:</b> <?= nl2br(htmlspecialchars($review['comment'], ENT_QUOTES, 'UTF-8')) ?></p>
+        <p  style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        <b><?=  htmlspecialchars($review['reviewer'], ENT_QUOTES, 'UTF-8')?>：</b> <?= nl2br(htmlspecialchars($review['comment'], ENT_QUOTES, 'UTF-8')) ?></p>
         <hr>
     <?php endforeach; ?>
 <?php else: ?>
@@ -77,7 +78,7 @@ try {
 <form action="./addReview.php" method="POST">
     <input type="hidden" name="movie_id" value="<?= htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>">
     <p>名前：<input type="text" name="reviewer" required></p>
-    <p>コメント：<textarea name="comment" required></textarea></p>
+    <p>コメント：<br><textarea name="comment" required></textarea></p>
     <button type="submit">追加</button>
 </form>
 
