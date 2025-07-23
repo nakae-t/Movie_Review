@@ -39,31 +39,48 @@
         // データ取得
         $stmt = $pdo->query("SELECT * FROM movies ORDER BY id DESC");
         $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-
-        <?php
         
-        // 表示処理
-        foreach ($movies as $movie) {
-            echo "<div>";
-            echo "<h3>タイトル:" . htmlspecialchars($movie['title'], ENT_QUOTES, 'UTF-8') . "</h3>";
-            echo "<p><b>ID:</b>".$movie['id']."</p>";
-            echo "<p><b>ジャンル:</b> " . htmlspecialchars($movie['genre'], ENT_QUOTES, 'UTF-8') . "</p>";
-            echo "<p><b>監督:</b> " . htmlspecialchars($movie['director'], ENT_QUOTES, 'UTF-8') . "</p>";
-            echo "<img src='" . htmlspecialchars($movie['photo_path'], ENT_QUOTES, 'UTF-8') . "' alt='映画画像' width='200'>";
+    ?>
 
-            echo "<form action='./detailMovie.php' method='POST'>";
-            echo "<input type='hidden' name='review' value= '".$movie['id']."'>";
-             echo "<button type='submit'>編集</button>";
-            echo "</form>";
+    <table border="1" style="text-align: center; width: 1000px;">
+        <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>ジャンル</th>
+            <th>監督</th>
+            <th>画像</th>
+            <th>アクション</th>
+        </tr>
+        <?php foreach ($movies as $movie): ?>
+        <tr>
+            <td><?= htmlspecialchars($movie['id']) ?></td>
+            <td><?= htmlspecialchars($movie['title']) ?></td>
+            <td><?= htmlspecialchars($movie['genre']) ?></td>
+            <td><?= htmlspecialchars($movie['director']) ?></td>
+            <td>
+                <?php if ($movie['photo_path']): ?>
+                    <img src="<?= htmlspecialchars($movie['photo_path']) ?>" width="200">
+                <?php else: ?>
+                    画像なし
+                <?php endif; ?>
+            </td>
+           <td>
+                <form action="./detailMovie.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="review" value="<?= $movie['id'] ?>">
+                    <button type="submit">編集</button>
+                </form>
 
-            echo "<form action='./deleteMovie.php' method='POST'>";
-            echo "<input type='hidden' name='delete_id' value= '".$movie['id']."'>";
-            echo "<button type='submit'>削除</button>";
-            echo "</form>";
-
-            echo "</div><hr>";
-        }
+                <form action="./deleteMovie.php" method="POST" style="display:inline;" onsubmit="return confirm('削除しますか？');">
+                    <input type="hidden" name="delete_id" value="<?= $movie['id'] ?>">
+                    <button type="submit">削除</button>
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+        
+        
+    <?php 
     } catch (PDOException $e) {
         echo "エラー: " . $e->getMessage();
     }

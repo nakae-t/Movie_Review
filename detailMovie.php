@@ -64,7 +64,6 @@ try {
 
 <?php if (!empty($reviews)): ?>
     <?php foreach ($reviews as $review): ?>
-        <p><b>名前:</b> <?= htmlspecialchars($review['reviewer'], ENT_QUOTES, 'UTF-8') ?></p>
         <p><b>コメント:</b> <?= nl2br(htmlspecialchars($review['comment'], ENT_QUOTES, 'UTF-8')) ?></p>
         <hr>
     <?php endforeach; ?>
